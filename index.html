@@ -450,6 +450,59 @@ p{margin:0}
 .door .lf::after{content:"";position:absolute;right:10px;top:55%;width:8px;height:8px;border-radius:50%;background:#e8c776}
 @keyframes doorOpen{to{transform:rotateY(-78deg)}}
 @media (max-width:860px){.slot{width:56px;height:56px}.invbar{margin-bottom:26px}}
+/* ===== teacher dashboard ===== */
+.tbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.tbar select,.tbar input{font-family:var(--f-ui);font-size:14px;padding:8px 12px;border:1px solid #3d4558;border-radius:6px;background:#0c0f18;color:var(--fg)}
+.tbar input{min-width:0;flex:1;max-width:240px}
+.tstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
+.tstat{background:linear-gradient(180deg,#1a2030,#131826);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.tstat b{display:block;font-family:var(--f-mono);font-size:28px;font-weight:600;color:var(--brass-hi);line-height:1.1;font-variant-numeric:tabular-nums}
+.tstat span{font-size:12.5px;color:var(--fg2);letter-spacing:.06em}
+.tstat small{display:block;font-size:12px;color:var(--fg3);margin-top:4px}
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:rgba(12,15,24,.85)}
+.ttab{border-collapse:collapse;width:100%;font-size:14px;min-width:860px}
+.ttab th{position:sticky;top:0;background:#1a2030;text-align:left;font-weight:600;color:var(--fg2);font-size:12.5px;letter-spacing:.04em;padding:10px 12px;border-bottom:1px solid #3d4558;white-space:nowrap}
+.ttab td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+.ttab tbody tr{cursor:pointer}
+.ttab tbody tr:hover td{background:rgba(224,180,90,.08)}
+.ttab .num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.ttab .nm{font-weight:700;white-space:nowrap}
+.ttab .sub{display:block;font-size:12px;color:var(--fg3);font-weight:400}
+.live{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-right:6px;box-shadow:0 0 8px var(--ok);vertical-align:1px}
+.chs{display:flex;gap:3px}
+.chs i{width:20px;height:20px;border-radius:4px;background:#232a3b;font-style:normal;font-family:var(--f-mono);font-size:11px;display:grid;place-items:center;color:var(--fg3)}
+.chs i.s1{background:#5a4320;color:#ffd98a}.chs i.s2{background:#8a6a2a;color:#fff3d2}.chs i.s3{background:var(--brass);color:var(--on-brass)}
+.sks{display:grid;grid-template-columns:repeat(16,12px);gap:2px}
+.sks i{width:12px;height:12px;border-radius:2px;background:#232a3b}
+.sks i.l1{background:#b07a4a}.sks i.l2{background:#c9cfd9}.sks i.l3{background:var(--brass-hi)}
+.tlegend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--fg2);margin:10px 0 0}
+.tlegend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.bars{display:flex;flex-direction:column;gap:10px}
+.barrow{display:grid;grid-template-columns:minmax(0,1fr) 200px;gap:16px;align-items:center;background:rgba(12,15,24,.85);border:1px solid var(--line);border-radius:10px;padding:12px 16px;cursor:default}
+@media (max-width:700px){.barrow{grid-template-columns:minmax(0,1fr)}}
+.barrow .q{font-family:var(--f-title);font-size:15px;line-height:1.7}
+.barrow .q small{display:block;font-family:var(--f-ui);font-size:12px;color:var(--fg3);letter-spacing:.04em}
+.meterbar{height:10px;background:#232a3b;border-radius:6px;overflow:hidden}
+.meterbar i{display:block;height:100%;border-radius:6px}
+.barrow .m{display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:var(--fg2);font-family:var(--f-mono)}
+.feed{display:flex;flex-direction:column;gap:2px}
+.feed div{display:grid;grid-template-columns:90px 150px minmax(0,1fr);gap:12px;padding:9px 12px;border-bottom:1px solid var(--line);font-size:14px}
+@media (max-width:700px){.feed div{grid-template-columns:minmax(0,1fr)}}
+.feed .w{color:var(--fg3);font-family:var(--f-mono);font-size:12.5px}
+.feed .ok{color:var(--ok)}.feed .bad{color:var(--bad)}
+.ovc.wide{width:min(980px,100%)}
+.alist{display:flex;flex-direction:column;gap:8px;max-height:52vh;overflow:auto;padding-right:4px}
+.aitem{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:rgba(0,0,0,.2);font-size:14px;line-height:1.7}
+.aitem.wr{border-color:rgba(255,117,99,.5)}
+.aitem .h{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg3);letter-spacing:.04em}
+.aitem .tag{border-radius:999px;padding:0 8px;font-size:11.5px;font-weight:700}
+.aitem .tag.ok{background:rgba(95,209,179,.15);color:var(--ok)}.aitem .tag.bad{background:rgba(255,117,99,.15);color:var(--bad)}.aitem .tag.mid{background:rgba(224,180,90,.15);color:var(--brass-hi)}
+.aitem .qq{font-family:var(--f-title);color:var(--fg)}
+.aitem .ga{font-family:var(--f-mono);font-size:13px;color:var(--fg2)}
+.skgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+.skgrid div{font-size:12.5px;border-radius:6px;padding:5px 9px;background:#232a3b;color:var(--fg2)}
+.skgrid div.l1{background:rgba(176,122,74,.3);color:#f0c9a3}.skgrid div.l2{background:rgba(201,207,217,.18);color:#dfe5ee}.skgrid div.l3{background:rgba(255,217,138,.22);color:var(--brass-hi)}
+.tempty{padding:40px 16px;text-align:center;color:var(--fg2);font-size:15px;line-height:1.8}
 /* sign-in & sync */
 .signrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .sgerr{color:var(--bad);min-height:1.5em;font-size:14px}
@@ -578,6 +631,7 @@ function scheduleFlush(){clearTimeout(flushT);flushT=setTimeout(flush,1500);}
 function flush(){
   const url=logUrl(); if(!url||inflight||!S.student) return;
   const batch=LQ.slice(0,40); const ids=new Set(batch.map(e=>e.id));
+  if(typeof fetch!=='function') return;
   inflight=true;
   fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({v:1,events:batch,summary:summary()})})
     .then(()=>{LQ=LQ.filter(e=>!ids.has(e.id));saveQ();S.lastSync=Date.now();save();inflight=false;if(LQ.length)scheduleFlush();})
@@ -615,20 +669,49 @@ const pname=()=>S.name||'助手';
 /* =========================================================
    sound (synthesized, starts after a user gesture)
    ========================================================= */
-const SFX={ctx:null};
-function actx(){if(S.muted)return null;try{if(!SFX.ctx)SFX.ctx=new (window.AudioContext||window.webkitAudioContext)();if(SFX.ctx.state==='suspended')SFX.ctx.resume();return SFX.ctx;}catch(e){return null;}}
-function tone(f,d,type,vol,delay){const c=actx();if(!c)return;const t=c.currentTime+(delay||0);const o=c.createOscillator(),g=c.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(vol||.08,t+.012);g.gain.exponentialRampToValueAtTime(0.0001,t+d);o.connect(g).connect(c.destination);o.start(t);o.stop(t+d+.02);}
+const SFX={ctx:null,bus:null,unlocked:false};
+function makeCtx(){
+  if(SFX.ctx) return SFX.ctx;
+  const AC=window.AudioContext||window.webkitAudioContext; if(!AC) return null;
+  try{
+    try{if(navigator.audioSession) navigator.audioSession.type='playback';}catch(e){}
+    const c=new AC();
+    const comp=c.createDynamicsCompressor();comp.threshold.value=-14;comp.knee.value=8;comp.ratio.value=4;
+    const g=c.createGain();g.gain.value=0.9;g.connect(comp).connect(c.destination);
+    SFX.ctx=c;SFX.bus=g;return c;
+  }catch(e){return null;}
+}
+/* 瀏覽器規定：聲音必須在使用者第一次點擊或按鍵時「解鎖」 */
+function unlockAudio(){
+  const c=makeCtx(); if(!c) return;
+  if(c.state!=='running'){try{c.resume();}catch(e){}}
+  if(!SFX.unlocked){try{const b=c.createBuffer(1,1,22050),src=c.createBufferSource();src.buffer=b;src.connect(c.destination);src.start(0);SFX.unlocked=true;}catch(e){}}
+}
+['pointerdown','touchend','keydown','click'].forEach(ev=>window.addEventListener(ev,unlockAudio,{capture:true,passive:true}));
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&SFX.ctx&&SFX.ctx.state!=='running'){try{SFX.ctx.resume();}catch(e){}}});
+function withCtx(fn){
+  if(S.muted) return;
+  const c=makeCtx(); if(!c) return;
+  if(c.state==='running'){fn(c,SFX.bus);return;}
+  try{c.resume().then(()=>{if(c.state==='running')fn(c,SFX.bus);}).catch(()=>{});}catch(e){}
+}
+function actx(){return (!S.muted&&SFX.ctx&&SFX.ctx.state==='running')?SFX.ctx:null;}
+function tone(f,d,type,vol,delay){
+  withCtx((c,bus)=>{const t=c.currentTime+0.01+(delay||0);const o=c.createOscillator(),g=c.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t);
+    const v=Math.min(0.6,(vol||.08)*2.6);g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.012);g.gain.exponentialRampToValueAtTime(0.0001,t+d);
+    o.connect(g).connect(bus);o.start(t);o.stop(t+d+.03);});
+}
 function sfx(n){
   if(S.muted) return;
   switch(n){
     case 'tick': tone(720,.05,'triangle',.035); break;
     case 'ok': tone(523,.12,'triangle',.09); tone(784,.14,'triangle',.09,.09); tone(1047,.22,'triangle',.08,.18); break;
-    case 'bad': {const c=actx();if(!c)break;const t=c.currentTime;const o=c.createOscillator(),g=c.createGain();o.type='sawtooth';o.frequency.setValueAtTime(180,t);o.frequency.exponentialRampToValueAtTime(90,t+.25);g.gain.setValueAtTime(.06,t);g.gain.exponentialRampToValueAtTime(.0001,t+.3);o.connect(g).connect(c.destination);o.start(t);o.stop(t+.32);break;}
+    case 'bad': {withCtx((c,bus)=>{const t=c.currentTime+0.01;const o=c.createOscillator(),g=c.createGain();o.type='sawtooth';o.frequency.setValueAtTime(180,t);o.frequency.exponentialRampToValueAtTime(90,t+.25);g.gain.setValueAtTime(.16,t);g.gain.exponentialRampToValueAtTime(.0001,t+.3);o.connect(g).connect(bus);o.start(t);o.stop(t+.32);});break;}
     case 'coin': tone(988,.07,'square',.035); tone(1319,.16,'square',.035,.06); break;
     case 'star': tone(1047,.18,'sine',.08); tone(1568,.3,'sine',.06,.05); break;
     case 'lvl': [523,659,784,1047,1319].forEach((f,i)=>tone(f,.2,'triangle',.08,i*.08)); break;
     case 'open': tone(392,.1,'triangle',.06); tone(587,.18,'triangle',.06,.08); break;
-    case 'candle': {const c=actx();if(!c)break;const t=c.currentTime;const len=c.sampleRate*.4;const b=c.createBuffer(1,len,c.sampleRate);const d=b.getChannelData(0);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*(1-i/len);const s=c.createBufferSource();s.buffer=b;const fl=c.createBiquadFilter();fl.type='bandpass';fl.frequency.value=900;const g=c.createGain();g.gain.value=.12;s.connect(fl).connect(g).connect(c.destination);s.start(t);break;}
+    case 'candle': {withCtx((c,bus)=>{const t=c.currentTime+0.01;const len=c.sampleRate*.4;const b=c.createBuffer(1,len,c.sampleRate);const d=b.getChannelData(0);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*(1-i/len);const s=c.createBufferSource();s.buffer=b;const fl=c.createBiquadFilter();fl.type='bandpass';fl.frequency.value=900;const g=c.createGain();g.gain.value=.35;s.connect(fl).connect(g).connect(bus);s.start(t);});break;}
     case 'unlock': tone(1500,.03,'square',.05); tone(950,.05,'square',.05,.06); tone(1250,.14,'triangle',.06,.14); break;
     case 'badge': [784,988,1175,1568].forEach((f,i)=>tone(f,.25,'sine',.07,i*.07)); break;
   }
@@ -767,7 +850,7 @@ function updateHud(){
 }
 function soundBtn(){
   const b=E('button','hb',S.muted?'音效 關':'音效 開');b.type='button';b.setAttribute('aria-pressed',String(!S.muted));
-  b.onclick=()=>{S.muted=!S.muted;save();b.textContent=S.muted?'音效 關':'音效 開';b.setAttribute('aria-pressed',String(!S.muted));if(!S.muted)sfx('tick');};
+  b.onclick=()=>{S.muted=!S.muted;save();b.textContent=S.muted?'音效 關':'音效 開';b.setAttribute('aria-pressed',String(!S.muted));if(!S.muted){unlockAudio();sfx('ok');}};
   return b;
 }
 
@@ -1213,7 +1296,7 @@ function go(name,arg){
   if(screen==='play'&&P&&P.enter){addActive();P.enter=0;}
   if(R&&R.raf){cancelAnimationFrame(R.raf);R=null;}
   screen=name; view.innerHTML='';
-  ({title:showTitle,hub:showHub,play:showPlay,board:showBoard,rush:showRush,book:showBook})[name](arg);
+  ({title:showTitle,hub:showHub,play:showPlay,board:showBoard,rush:showRush,book:showBook,teacher:showTeacher})[name](arg);
   updateHud(); window.scrollTo(0,0);
 }
 document.addEventListener('keydown',e=>{
@@ -1241,11 +1324,12 @@ function showTitle(){
   view.innerHTML=`<section class="title"><div class="scene" aria-hidden="true">${sceneSVG('harbor')}</div><div class="tt-digits" aria-hidden="true"><span>${rows}${rows}</span></div>
   <div class="tt"><p class="tt-latin">Mirifici Logarithmorum Canonis Descriptio</p><h1 class="logo">納皮爾的<br>對數表</h1><p class="tt-sc">Edinburgh · MDCXIV</p>
   <p class="tt-lead">1614 年，一本幾乎只印著數字的書，把天文學家好幾個月的乘法縮短成幾天。你是納皮爾的新助手。從愛丁堡的港口出發，沿著航線打開八個上鎖的房間，把它重建出來。</p>
-  <div class="tt-menu"><button class="gbtn" type="button" id="tStart">${has?'繼續航行':'揚帆出發'}</button><button class="gbtn ghost" type="button" id="tSet">設定</button></div>
+  <div class="tt-menu"><button class="gbtn" type="button" id="tStart">${has?'繼續航行':'揚帆出發'}</button><button class="gbtn ghost" type="button" id="tSet">設定</button><span id="tSnd"></span></div>
   ${S.student?`<p class="who"><span>目前登入：${esc(S.student.cls)} 班 ${esc(S.student.seat)} 號 <b>${esc(S.student.name)}</b></span><button class="lnk" type="button" id="tSwitch">不是你？換人登入</button></p>`:''}
   <p class="press">— 按任意鍵開始 —</p>
-  <div class="tt-foot"><span>數學 B · 指數與對數</span><span>8 個密室 · ${QN} 道鎖 · 16 張技能卡</span><span>設計：余佳霖老師</span></div></div></section>`;
-  $('#tStart').onclick=startGame; $('#tSet').onclick=openSettings;
+  <div class="tt-foot"><span>數學 B · 指數與對數</span><span>8 個密室 · ${QN} 道鎖 · 16 張技能卡</span><span>設計：余佳霖老師</span><button class="lnk" type="button" id="tTeach">教師入口</button></div></div></section>`;
+  $('#tStart').onclick=startGame; $('#tSet').onclick=openSettings; $('#tTeach').onclick=teacherLogin;
+  $('#tSnd').append(soundBtn());
   const sw=$('#tSwitch');if(sw)sw.onclick=()=>{switchStudent();go('title');};
 }
 function startGame(){
@@ -1293,7 +1377,9 @@ function switchStudent(){
 /* =========================================================
    hub (world map)
    ========================================================= */
-const unlocked=i=>i===0||!!S.done[i-1]||S.unlockAll;
+const UK='napier-teacher-unlock';
+const devUnlock=()=>{try{return sessionStorage.getItem(UK)==='1'&&!!sessionStorage.getItem('napier-teacher-key');}catch(e){return false;}};
+const unlocked=i=>i===0||!!S.done[i-1]||devUnlock();
 const NODES=[[232,128],[340,96],[414,170],[338,228],[248,286],[330,350],[386,478],[798,392]];
 let selCh=null;
 function starsHTML(n){return `<span class="stars" aria-label="${n} 顆星">${[1,2,3].map(i=>`<span class="${n>=i?'on':''}">★</span>`).join('')}</span>`;}
@@ -1825,6 +1911,152 @@ function showBookTab(){
 }
 
 /* =========================================================
+   teacher dashboard
+   ========================================================= */
+const TK='napier-teacher-key';
+let T=null;
+function teacherLogin(){
+  if(!logUrl()){toast('還沒設定紀錄網址','請先把 LOG_URL 填進檔案開頭。');return;}
+  let saved='';try{saved=sessionStorage.getItem(TK)||'';}catch(e){}
+  if(saved){toast('讀取全班紀錄中…','');fetchTeacher(saved).then(r=>{if(r.ok){T={data:r,cls:'all',q:'',tab:'students',key:saved};go('teacher');}else{try{sessionStorage.removeItem(TK);}catch(e){}askKey();}});return;}
+  askKey();
+}
+function askKey(){
+  overlay((o,close)=>{
+    o.innerHTML=`<div class="ovc"><div class="ov-k">Magister · 教師入口</div><h2>教師登入</h2><p>輸入教師密碼，查看全班的航行紀錄。</p><label class="fld" for="tkIn">教師密碼<input type="password" id="tkIn" autocomplete="current-password" style="font-family:var(--f-mono);font-size:18px;padding:10px 12px;border:1px solid #3d4558;border-radius:6px;background:#0c0f18;color:var(--fg)"></label><p class="sgerr" id="tkE" aria-live="polite"></p><div class="ov-row"><button class="gbtn" type="button" data-primary>進入</button><button class="gbtn ghost" type="button" id="tkC">取消</button></div></div>`;
+    const inp=o.querySelector('#tkIn'),er=o.querySelector('#tkE'),btn=o.querySelector('[data-primary]');setTimeout(()=>inp.focus(),80);
+    const submit=async()=>{const k=inp.value.trim();if(!k){er.textContent='請輸入密碼。';return;}btn.disabled=true;btn.textContent='驗證中…';er.textContent='';
+      const r=await fetchTeacher(k);btn.disabled=false;btn.textContent='進入';
+      if(r.ok){try{sessionStorage.setItem(TK,k);}catch(e){}T={data:r,cls:'all',q:'',tab:'students',key:k};close('ok');}else{er.textContent=r.msg;inp.select();}};
+    btn.onclick=submit;inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();submit();}});
+    o.querySelector('#tkC').onclick=()=>close();
+  }).then(a=>{if(a==='ok')go('teacher');});
+}
+async function fetchTeacher(k){
+  try{
+    const r=await fetch(logUrl(),{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'teacher',key:k})});
+    const d=await r.json();
+    if(d.ok) return d;
+    return {ok:false,msg:{bad:'密碼不對，再試一次。',locked:'錯誤次數太多，請 10 分鐘後再試。',nokey:'紀錄服務還沒設定教師密碼（指令碼屬性 TEACHER_KEY）。'}[d.error]||('讀取失敗：'+d.error)};
+  }catch(e){return {ok:false,msg:'連不上紀錄服務。Claude 的分享連結不能使用教師入口，請從 GitHub Pages 的網址開啟。'};}
+}
+const LVCH={'金':3,'銀':2,'銅':1};
+function tModel(){
+  const d=T.data,SH=d.sumHead,LH=d.logHead;
+  const si=n=>SH.indexOf(n),li=n=>LH.indexOf(n);
+  const ch0=si('第 I 章'),sk0=si(SKILLS[0].name);
+  const students=d.sum.filter(r=>String(r[0]).trim()!=='').map(r=>({
+    cls:String(r[si('班級')]),seat:String(r[si('座號')]),name:String(r[si('姓名')]),last:r[si('最後上線')]?new Date(r[si('最後上線')]):null,
+    cur:String(r[si('目前進度')]||''),lv:+r[si('等級')]||1,xp:+r[si('經驗值')]||0,done:+r[si('完成章節')]||0,stars:+r[si('總星數')]||0,
+    chs:Array.from({length:8},(_,i)=>String(r[ch0+i]||'').length),dn:+r[si('委託完成')]||0,rush:+r[si('快算最高分')]||0,badges:+r[si('成就數')]||0,
+    sk:Array.from({length:16},(_,i)=>{const t=String(r[sk0+i]||'');return {lv:LVCH[t[0]]||0,txt:t};})
+  })).sort((a,b)=>a.cls.localeCompare(b.cls,'zh-Hant',{numeric:true})||(+a.seat)-(+b.seat));
+  const g=(r,n)=>r[li(n)];
+  const logs=d.log.map(r=>({t:g(r,'收到時間')?new Date(g(r,'收到時間')):null,cls:String(g(r,'班級')),seat:String(g(r,'座號')),name:String(g(r,'姓名')),ev:g(r,'事件'),mode:g(r,'模式'),ch:g(r,'章節'),room:g(r,'房間'),q:g(r,'題號'),skill:g(r,'技能'),question:g(r,'題目'),given:String(g(r,'學生作答（依序）')||''),correct:g(r,'正確答案'),first:g(r,'第一次就答對')==='是',ok:g(r,'最後答對')==='是',reveal:g(r,'看解答')==='是',tries:+g(r,'作答次數')||0,hint:g(r,'買提示')==='是',sec:+g(r,'作答秒數')||0,note:g(r,'備註')}));
+  return {students,logs};
+}
+function rel(dt){
+  if(!dt||isNaN(dt)) return '—';
+  const s=(Date.now()-dt.getTime())/1000;
+  if(s<90) return '剛剛';if(s<3600) return Math.round(s/60)+' 分鐘前';if(s<86400) return Math.round(s/3600)+' 小時前';
+  if(s<86400*7) return Math.round(s/86400)+' 天前';
+  return dt.toLocaleDateString('zh-TW');
+}
+const hhmm=dt=>dt&&!isNaN(dt)?dt.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false}):'';
+function tFilter(m){
+  const q=T.q.trim();
+  const keep=x=>(T.cls==='all'||x.cls===T.cls)&&(!q||x.name.includes(q)||x.seat===q.padStart(2,'0'));
+  return {students:m.students.filter(keep),logs:m.logs.filter(keep)};
+}
+function showTeacher(){
+  if(!T){go('title');return;}
+  const m=tModel();
+  const classes=[...new Set(m.students.map(s=>s.cls))].sort((a,b)=>a.localeCompare(b,'zh-Hant',{numeric:true}));
+  const page=E('div','screen');
+  const hud=E('header','hud',`<button class="hb" type="button" id="back">◀ 離開教師入口</button><div class="hud-ch"><span class="rn">⚓</span><b>教師入口 · 航行紀錄</b></div><div class="hud-r"></div>`);
+  const rf=E('button','hb','重新整理');rf.type='button';rf.onclick=async()=>{rf.textContent='讀取中…';const r=await fetchTeacher(T.key);if(r.ok){T.data=r;showTeacherRe();}else{toast('重新整理失敗',r.msg);rf.textContent='重新整理';}};
+  const lo=E('button','hb','登出');lo.type='button';lo.onclick=()=>{try{sessionStorage.removeItem(TK);sessionStorage.removeItem(UK);}catch(e){}T=null;toast('已登出教師入口','這台裝置的章節解鎖也已關閉。');go('title');};
+  hud.querySelector('.hud-r').append(rf,lo);page.append(hud);
+  page.insertAdjacentHTML('beforeend',`<div class="shead"><div><h1>全班航行紀錄</h1><p class="sub">資料更新於 ${hhmm(new Date(T.data.at))}。點學生那一列可以看他的完整作答過程。${T.data.truncated?'（作答紀錄太多，只載入最近 12000 筆）':''}</p></div></div><div class="body" id="tbody"></div>`);
+  view.append(page);
+  $('#back').onclick=()=>go('title');
+  const body=$('#tbody');
+  const tools=E('div','card brass');tools.style.marginBottom='18px';
+  const drawTools=()=>{const on=devUnlock();tools.innerHTML=`<div class="ov-row" style="justify-content:space-between"><div><h2 style="font-size:17px">教師工具 · 課堂示範</h2><p style="font-size:13.5px">${on?'這台裝置目前<b style="color:var(--brass-hi)">已解鎖全部章節</b>，可以直接跳到任何一章示範。登出或關閉瀏覽器後會自動恢復上鎖。':'開啟後，這台裝置可以直接進入任何一章，不必先通關前一章。只影響這台裝置，不會改到學生的進度。'}</p></div><div class="ov-row"><button class="gbtn ${on?'ghost ':''}sm" type="button" id="tUnlock">${on?'關閉解鎖':'解鎖全部章節'}</button>${on?'<button class="gbtn sm" type="button" id="tDemo">到航海圖示範</button>':''}</div></div>`;
+    tools.querySelector('#tUnlock').onclick=()=>{try{sessionStorage.setItem(UK,on?'0':'1');}catch(e){}sfx('unlock');drawTools();};
+    const dm=tools.querySelector('#tDemo');if(dm)dm.onclick=()=>{selCh=null;go('hub');};};
+  drawTools();body.append(tools);
+  const bar=E('div','tbar');
+  bar.innerHTML=`<select id="tCls" aria-label="班級"><option value="all">全部班級</option>${classes.map(c=>`<option value="${esc(c)}"${T.cls===c?' selected':''}>${esc(c)} 班</option>`).join('')}</select><input id="tQ" type="search" placeholder="搜尋姓名或座號" value="${esc(T.q)}" aria-label="搜尋學生"><div class="tabs" role="tablist" style="margin:0 0 0 auto">${[['students','學生名單'],['stuck','卡關題目'],['feed','最新動態']].map(([k,n])=>`<button class="tab" role="tab" type="button" data-t="${k}" aria-selected="${T.tab===k}">${n}</button>`).join('')}</div>`;
+  body.append(bar,E('div','',''));
+  bar.querySelector('#tCls').onchange=e=>{T.cls=e.target.value;renderT(m);};
+  bar.querySelector('#tQ').oninput=e=>{T.q=e.target.value;renderT(m);};
+  bar.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{T.tab=b.dataset.t;bar.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',String(x===b)));renderT(m);});
+  renderT(m);
+}
+function showTeacherRe(){const y=window.scrollY;go('teacher');window.scrollTo(0,y);}
+function renderT(m){
+  const f=tFilter(m),body=$('#tbody');
+  let out=body.querySelector('#tout');if(!out){out=E('div');out.id='tout';body.append(out);}
+  const ans=f.logs.filter(l=>l.ev==='作答');
+  const now=Date.now();
+  const today=f.students.filter(s=>s.last&&new Date(s.last).toDateString()===new Date().toDateString()).length;
+  const live=f.students.filter(s=>s.last&&now-s.last<5*60000).length;
+  const fr=ans.length?Math.round(ans.filter(a=>a.first).length/ans.length*100):null;
+  const avgDone=f.students.length?(f.students.reduce((a,s)=>a+s.done,0)/f.students.length).toFixed(1):'—';
+  let html=`<div class="tstats"><div class="tstat"><b>${f.students.length}</b><span>學生人數</span><small>今天上線 ${today} 人</small></div><div class="tstat"><b>${live}</b><span>正在玩</span><small>5 分鐘內有動作</small></div><div class="tstat"><b>${avgDone}</b><span>平均完成章節</span><small>共 8 章</small></div><div class="tstat"><b>${fr==null?'—':fr+'%'}</b><span>第一次就答對</span><small>共 ${ans.length} 次作答</small></div></div>`;
+  if(!f.students.length&&!f.logs.length){out.innerHTML=html+`<div class="tempty">還沒有學生的紀錄。<br>學生從 GitHub Pages 網址進入遊戲、登記上船後，資料就會出現在這裡。</div>`;return;}
+  if(T.tab==='students'){
+    html+=`<div class="tscroll"><table class="ttab"><thead><tr><th>班級 座號</th><th>姓名</th><th>目前進度</th><th>等級</th><th>各章星數 I–VIII</th><th>16 項技能</th><th>委託 / 快算</th><th>最後上線</th></tr></thead><tbody>${f.students.map((s,i)=>`<tr data-i="${i}" tabindex="0"><td class="num">${esc(s.cls)}-${esc(s.seat)}</td><td class="nm">${s.last&&now-s.last<5*60000?'<span class="live" title="正在玩"></span>':''}${esc(s.name)}</td><td>${esc(s.cur)}<span class="sub">完成 ${s.done} 章 · ★ ${s.stars}</span></td><td class="num">Lv ${s.lv}</td><td><div class="chs">${s.chs.map((c,k)=>`<i class="s${c}" title="第 ${RN[k]} 章">${c?c:''}</i>`).join('')}</div></td><td><div class="sks">${s.sk.map((k,j)=>`<i class="l${k.lv}" title="${SKILLS[j].name}${k.txt?'：'+k.txt:'：未接觸'}"></i>`).join('')}</div></td><td class="num">${s.dn} / ${s.rush}</td><td>${rel(s.last)}</td></tr>`).join('')}</tbody></table></div>
+    <div class="tlegend"><span><i style="background:#232a3b"></i>未接觸</span><span><i style="background:#b07a4a"></i>銅：練習中</span><span><i style="background:#c9cfd9"></i>銀：熟悉</span><span><i style="background:var(--brass-hi)"></i>金：精熟</span><span>技能方塊依序：${SKILLS.map(s=>s.name).join('、')}</span></div>`;
+    out.innerHTML=html;
+    out.querySelectorAll('tbody tr').forEach(tr=>{const open=()=>studentDetail(f.students[+tr.dataset.i],m);tr.onclick=open;tr.onkeydown=e=>{if(e.key==='Enter')open();};});
+  } else if(T.tab==='stuck'){
+    const by={};
+    ans.filter(a=>a.mode==='劇情'&&a.q).forEach(a=>{const o=by[a.q]||(by[a.q]={q:a.q,ch:a.ch,room:a.room,skill:a.skill,question:a.question,correct:a.correct,n:0,first:0,tries:0,sec:0,reveal:0,wrong:{}});o.n++;if(a.first)o.first++;o.tries+=a.tries;o.sec+=a.sec;if(a.reveal)o.reveal++;
+      a.given.split(' | ').slice(0,-1).forEach(w=>{if(w)o.wrong[w]=(o.wrong[w]||0)+1;});if(!a.ok&&a.given){const l=a.given.split(' | ').pop();o.wrong[l]=(o.wrong[l]||0)+1;}});
+    const qs=Object.values(by).sort((a,b)=>a.first/a.n-b.first/b.n||b.n-a.n).slice(0,15);
+    const bs={};ans.forEach(a=>{if(!a.skill||a.skill==='暖身')return;const o=bs[a.skill]||(bs[a.skill]={n:0,first:0});o.n++;if(a.first)o.first++;});
+    const sk=Object.entries(bs).sort((a,b)=>a[1].first/a[1].n-b[1].first/b[1].n);
+    const col=r=>r<.5?'var(--bad)':r<.75?'var(--brass)':'var(--ok)';
+    html+=`<h2 style="font-family:var(--f-title);font-size:20px;margin:6px 0 12px">最多人卡關的劇情題目</h2>`+(qs.length?`<div class="bars">${qs.map(o=>{const r=o.first/o.n;const wr=Object.entries(o.wrong).sort((a,b)=>b[1]-a[1]).slice(0,3);return `<div class="barrow"><div class="q"><small>鎖 No. ${String(o.q).padStart(3,'0')} · ${esc(o.ch)} ${esc(o.room)} · ${esc(o.skill)}</small>${esc(o.question)}<small>正確答案：${esc(o.correct)}${wr.length?'　常見錯誤：'+wr.map(([w,c])=>`${esc(w)}（${c}）`).join('、'):''}</small></div><div class="m"><span>第一次答對 ${Math.round(r*100)}%（${o.first}/${o.n}）</span><div class="meterbar"><i style="width:${Math.max(3,r*100)}%;background:${col(r)}"></i></div><span>平均 ${(o.tries/o.n).toFixed(1)} 次 · ${Math.round(o.sec/o.n)} 秒${o.reveal?` · ${o.reveal} 人看解答`:''}</span></div></div>`;}).join('')}</div>`:'<div class="tempty">還沒有劇情作答紀錄。</div>')
+      +`<h2 style="font-family:var(--f-title);font-size:20px;margin:28px 0 12px">技能答對率（含委託與快算）</h2>`+(sk.length?`<div class="bars">${sk.map(([k,o])=>{const r=o.first/o.n;return `<div class="barrow"><div class="q">${esc(k)}<small>${o.n} 次作答</small></div><div class="m"><span>第一次答對 ${Math.round(r*100)}%</span><div class="meterbar"><i style="width:${Math.max(3,r*100)}%;background:${col(r)}"></i></div></div></div>`;}).join('')}</div>`:'<div class="tempty">還沒有技能作答紀錄。</div>');
+    out.innerHTML=html;
+  } else {
+    const fe=f.logs.slice(-60).reverse();
+    html+=`<div class="tscroll" style="min-width:0"><div class="feed">${fe.map(l=>{let what=esc(l.ev);
+      if(l.ev==='作答') what=`${l.first?'<span class="ok">一次答對</span>':l.ok?`<span class="bad">答錯 ${l.tries-1} 次後答對</span>`:'<span class="bad">看了解答</span>'}　${esc(l.mode)}${l.q?' 鎖 '+l.q:''} · ${esc(l.skill)}`;
+      else if(l.note) what+=`　${esc(l.note)}`;
+      if(l.room&&l.ev!=='作答') what+=`　${esc(l.ch)} ${esc(l.room)}`;
+      return `<div><span class="w">${rel(l.t)}</span><span><b>${esc(l.name)}</b> <span class="w">${esc(l.cls)}-${esc(l.seat)}</span></span><span>${what}</span></div>`;}).join('')||'<div class="tempty">還沒有動態。</div>'}</div></div>`;
+    out.innerHTML=html;
+  }
+}
+function studentDetail(s,m){
+  const mine=m.logs.filter(l=>l.cls===s.cls&&l.seat===s.seat);
+  const ans=mine.filter(l=>l.ev==='作答').reverse();
+  const clears=mine.filter(l=>l.ev==='逃脫成功');
+  const fr=ans.length?Math.round(ans.filter(a=>a.first).length/ans.length*100):null;
+  overlay((o,close)=>{
+    o.innerHTML=`<div class="ovc wide"><div class="ov-k">${esc(s.cls)} 班 ${esc(s.seat)} 號</div><h2>${esc(s.name)}</h2>
+     <p>${esc(s.cur)} · Lv ${s.lv} · 完成 ${s.done} 章 · ★ ${s.stars} · 委託 ${s.dn} 份 · 快算最高 ${s.rush} 分 · 最後上線 ${rel(s.last)}${fr!=null?` · 第一次答對率 ${fr}%`:''}</p>
+     <div class="chs">${s.chs.map((c,k)=>`<i class="s${c}" title="第 ${RN[k]} 章" style="width:28px;height:28px;font-size:13px">${c?c+'★':RN[k]}</i>`).join('')}</div>
+     ${clears.length?`<p style="font-size:13.5px">${clears.map(c=>`${esc(c.ch)}：${esc(c.note)}`).join('　')}</p>`:''}
+     <div class="skgrid">${s.sk.map((k,j)=>`<div class="l${k.lv}">${SKILLS[j].name}<br>${k.txt?esc(k.txt):'未接觸'}</div>`).join('')}</div>
+     <div class="ov-row" style="justify-content:space-between"><b style="font-family:var(--f-title)">作答過程（新到舊，共 ${ans.length} 題）</b><label class="ck"><input type="checkbox" id="onlyW"> 只看答錯過的</label></div>
+     <div class="alist" id="alist"></div>
+     <div class="ov-row"><button class="gbtn" type="button" data-primary>關閉</button></div></div>`;
+    const list=o.querySelector('#alist');
+    const draw=onlyW=>{const arr=(onlyW?ans.filter(a=>!a.first):ans).slice(0,300);
+      list.innerHTML=arr.length?arr.map(a=>`<div class="aitem${a.first?'':' wr'}"><div class="h"><span>${a.t?a.t.toLocaleString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}):''}</span><span>${esc(a.mode)}${a.q?' · 鎖 '+a.q:''}${a.room?' · '+esc(a.room):''}</span><span>${esc(a.skill)}</span><span>${a.sec} 秒</span>${a.first?'<span class="tag ok">一次答對</span>':a.reveal?'<span class="tag bad">看了解答</span>':a.ok?`<span class="tag mid">試了 ${a.tries} 次</span>`:'<span class="tag bad">未答對</span>'}${a.hint?'<span class="tag mid">買了提示</span>':''}</div><div class="qq">${esc(a.question)}</div><div class="ga">作答：${esc(a.given||'—')}　→　正解：${esc(a.correct)}</div></div>`).join(''):'<div class="tempty">沒有符合的作答。</div>';};
+    draw(false);
+    o.querySelector('#onlyW').onchange=e=>draw(e.target.checked);
+    o.querySelector('[data-primary]').onclick=()=>close();
+    o.addEventListener('click',e=>{if(e.target===o)close();});
+  });
+}
+
+/* =========================================================
    settings
    ========================================================= */
 function openSettings(){
@@ -1832,11 +2064,8 @@ function openSettings(){
     o.innerHTML=`<div class="ovc"><div class="ov-k">Optiones · 設定</div><h2>設定</h2>
      <div class="stuline"><span>${S.student?`${esc(S.student.cls)} 班 ${esc(S.student.seat)} 號 <b>${esc(S.student.name)}</b>`:'還沒登記上船'}</span><button class="gbtn ghost sm" type="button" id="sSwitch">換人登入</button></div>
      <p class="syncst" id="sSync"></p>
-     <label class="ck"><input type="checkbox" id="sMute" ${S.muted?'':'checked'}> 開啟音效</label>
-     <div class="ov-k" style="margin-top:6px">Magister · 教師工具</div>
-     <label class="ck"><input type="checkbox" id="sUnlock" ${S.unlockAll?'checked':''}> 解鎖全部章節（課堂示範或跳章使用）</label>
-     <label class="fld" for="sUrl">紀錄網址（測試用；正式上線請寫進檔案開頭的 LOG_URL）<input class="url" type="text" id="sUrl" value="${esc(S.logUrl||'')}" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off" spellcheck="false"></label>
-     <div class="ov-row"><button class="gbtn ghost sm" type="button" id="sFlush">立即上傳紀錄</button></div>
+     <div class="ov-row"><label class="ck"><input type="checkbox" id="sMute" ${S.muted?'':'checked'}> 開啟音效</label><button class="gbtn ghost sm" type="button" id="sTest">測試音效</button></div>
+     <div class="ov-row"><button class="gbtn ghost sm" type="button" id="sFlush">立即上傳紀錄</button><button class="gbtn ghost sm" type="button" id="sTeach">教師入口</button></div>
      <div class="ov-row"><button class="gbtn ghost sm" type="button" id="sReset">清除這台裝置的進度</button><span id="sMsg" style="font-size:12.5px;color:var(--fg2)"></span></div>
      <p>遊戲進度存在這台裝置的瀏覽器裡，換裝置或清除瀏覽資料就會從頭開始；上傳給老師的作答紀錄不會消失。</p>
      <p class="credit">設計：余佳霖老師 · Valerie Yu Studio · Find the value of you!</p>
@@ -1844,16 +2073,18 @@ function openSettings(){
     let armed=false;
     o.querySelector('#sReset').onclick=()=>{
       if(!armed){armed=true;o.querySelector('#sReset').textContent='再按一次確認清除';o.querySelector('#sMsg').textContent='等級、銀幣、星星和成就都會消失。';return;}
-      const st=S.student;logEv('reset',{note:'清除了這台裝置的遊戲進度'});S=fresh();S.student=st;S.name=st?st.name:'';save();D.board=null;D.streak=0;selCh=null;o.querySelector('#sMsg').textContent='已清除。';o.querySelector('#sReset').textContent='已清除';o.querySelector('#sUnlock').checked=false;
+      const st=S.student;logEv('reset',{note:'清除了這台裝置的遊戲進度'});S=fresh();S.student=st;S.name=st?st.name:'';save();D.board=null;D.streak=0;selCh=null;o.querySelector('#sMsg').textContent='已清除。';o.querySelector('#sReset').textContent='已清除';
     };
     o.querySelector('[data-primary]').onclick=()=>{
-      S.logUrl=o.querySelector('#sUrl').value.trim();
-      S.muted=!o.querySelector('#sMute').checked;S.unlockAll=o.querySelector('#sUnlock').checked;save();scheduleFlush();close();
+      S.muted=!o.querySelector('#sMute').checked;save();scheduleFlush();close();
     };
     const sy=o.querySelector('#sSync');sy.textContent=syncText();
     o.querySelector('#sSwitch').onclick=()=>close('switch');
-    o.querySelector('#sFlush').onclick=()=>{S.logUrl=o.querySelector('#sUrl').value.trim();save();if(!logUrl()){sy.textContent=syncText();return;}if(!LQ.length){sy.textContent='沒有待上傳的紀錄。';return;}sy.textContent='上傳中……';flush();setTimeout(()=>sy.textContent=syncText(),2500);};
-  }).then(a=>{if(a==='switch'){switchStudent();go('title');return;}if(screen==='hub'||screen==='title')go(screen);else updateHud();});
+    o.querySelector('#sMute').onchange=e=>{S.muted=!e.target.checked;save();if(!S.muted){unlockAudio();sfx('ok');}};
+    o.querySelector('#sTest').onclick=()=>{unlockAudio();if(S.muted){S.muted=false;save();o.querySelector('#sMute').checked=true;}sfx('unlock');setTimeout(()=>sfx('ok'),250);setTimeout(()=>sfx('coin'),700);};
+    o.querySelector('#sTeach').onclick=()=>close('teacher');
+    o.querySelector('#sFlush').onclick=()=>{if(!logUrl()){sy.textContent=syncText();return;}if(!LQ.length){sy.textContent='沒有待上傳的紀錄。';return;}sy.textContent='上傳中……';flush();setTimeout(()=>sy.textContent=syncText(),2500);};
+  }).then(a=>{if(a==='teacher'){teacherLogin();return;}if(a==='switch'){switchStudent();go('title');return;}if(screen==='hub'||screen==='title')go(screen);else updateHud();});
 }
 
 window.addEventListener('resize',()=>{const c=FX.c,dpr=window.devicePixelRatio||1;c.width=innerWidth*dpr;c.height=innerHeight*dpr;});
@@ -1864,5 +2095,6 @@ document.addEventListener('visibilitychange',()=>{
 setInterval(()=>{if(LQ.length)flush();},60000);
 setTimeout(flush,2500);
 go('title');
+if(location.hash==='#teacher') setTimeout(teacherLogin,300);
 })();
 </script>
