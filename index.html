@@ -503,6 +503,10 @@ p{margin:0}
 .skgrid div{font-size:12.5px;border-radius:6px;padding:5px 9px;background:#232a3b;color:var(--fg2)}
 .skgrid div.l1{background:rgba(176,122,74,.3);color:#f0c9a3}.skgrid div.l2{background:rgba(201,207,217,.18);color:#dfe5ee}.skgrid div.l3{background:rgba(255,217,138,.22);color:var(--brass-hi)}
 .tempty{padding:40px 16px;text-align:center;color:var(--fg2);font-size:15px;line-height:1.8}
+.qkeys{display:flex;gap:4px}
+.qk{min-width:38px;height:44px;border:2px solid #b89c62;border-radius:6px;background:#f8efd6;color:var(--paper-ink);font-family:var(--f-mono);font-size:20px;font-weight:600;cursor:pointer;box-shadow:0 2px 0 #b89c62;padding:0 8px}
+.qk:active{transform:translateY(2px);box-shadow:none}
+.qk:disabled{opacity:.5}
 /* sign-in & sync */
 .signrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .sgerr{color:var(--bad);min-height:1.5em;font-size:14px}
@@ -1178,7 +1182,16 @@ function buildPuzzle(q,opts){
     };
     sb.onclick=submit;
     inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();submit();}});
-    row.append(inp,sb); card.append(row);
+    const qk=E('div','qkeys');qk.setAttribute('aria-label','符號快捷鍵');
+    [['−','-','輸入負號'],['/','/','輸入分數線'],['.','.','輸入小數點'],['⌫','BS','刪除一個字']].forEach(([lab,v,al])=>{
+      const k=E('button','qk',lab);k.type='button';k.setAttribute('aria-label',al);
+      k.addEventListener('pointerdown',e=>e.preventDefault());
+      k.onclick=()=>{if(finished)return;const st=inp.selectionStart??inp.value.length,en=inp.selectionEnd??st;
+        if(v==='BS'){if(st===en&&st>0){inp.value=inp.value.slice(0,st-1)+inp.value.slice(en);inp.setSelectionRange(st-1,st-1);}else{inp.value=inp.value.slice(0,st)+inp.value.slice(en);inp.setSelectionRange(st,st);}}
+        else{inp.value=inp.value.slice(0,st)+v+inp.value.slice(en);inp.setSelectionRange(st+1,st+1);}
+        inp.focus({preventScroll:true});sfx('tick');};
+      qk.append(k);});
+    row.append(inp,qk,sb); card.append(row);
   }
   if(opts.hints){
     const hb=E('button','ptool',`提示 −${HINT_COST} ${COIN}`);hb.type='button';
