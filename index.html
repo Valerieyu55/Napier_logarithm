@@ -507,6 +507,39 @@ p{margin:0}
 .qk{min-width:38px;height:44px;border:2px solid #b89c62;border-radius:6px;background:#f8efd6;color:var(--paper-ink);font-family:var(--f-mono);font-size:20px;font-weight:600;cursor:pointer;box-shadow:0 2px 0 #b89c62;padding:0 8px}
 .qk:active{transform:translateY(2px);box-shadow:none}
 .qk:disabled{opacity:.5}
+/* title tap, guest, leaderboard */
+.title{cursor:pointer}
+.title .tt button,.title .tt a{cursor:pointer}
+.press{cursor:pointer}
+.guestnote{font-size:13.5px;color:var(--fg2);line-height:1.7}
+.ovc .orline{display:flex;align-items:center;gap:10px;color:var(--fg3);font-size:12.5px;letter-spacing:.1em}
+.ovc .orline::before,.ovc .orline::after{content:"";flex:1;height:1px;background:var(--line)}
+.mode.wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:14px;background:linear-gradient(100deg,#3a2c12,#1e2537 70%);border-color:var(--brass-dim)}
+.mode.wide .trophy{font-size:30px;line-height:1}
+.mode.wide div{display:flex;flex-direction:column;gap:2px}
+.rk-scope{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.podium{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:12px;align-items:end;max-width:720px;margin:6px 0 22px}
+.pod{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;min-width:0}
+.pod .pf{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-sc);font-size:24px;color:var(--on-brass);box-shadow:0 4px 0 rgba(0,0,0,.4)}
+.pod.p1 .pf{width:78px;height:78px;font-size:30px;background:radial-gradient(circle at 35% 30%,#fff3c8,#e0b45a 60%,#8a6a24);box-shadow:0 0 26px rgba(255,217,138,.45),0 4px 0 #6e5320}
+.pod.p2 .pf{background:radial-gradient(circle at 35% 30%,#ffffff,#c9cfd9 60%,#7d8594)}
+.pod.p3 .pf{background:radial-gradient(circle at 35% 30%,#ffe0c4,#c48a55 60%,#7a4d24)}
+.pod .pn{font-family:var(--f-title);font-weight:900;font-size:16px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pod .pc{font-size:12px;color:var(--fg3)}
+.pod .pv2{font-family:var(--f-mono);font-weight:600;color:var(--brass-hi);font-size:18px}
+.pod .base{width:100%;border-radius:8px 8px 0 0;background:linear-gradient(180deg,#2a3246,#161b28);border:1px solid var(--line);border-bottom:0}
+.pod.p1 .base{height:96px}.pod.p2 .base{height:70px}.pod.p3 .base{height:52px}
+.pod.me .pn{color:var(--brass-hi)}
+.rklist{display:flex;flex-direction:column;gap:6px;max-width:720px}
+.rkrow{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 14px;border-radius:8px;background:rgba(12,15,24,.85);border:1px solid var(--line)}
+.rkrow .no{font-family:var(--f-mono);font-weight:600;color:var(--fg2);text-align:center}
+.rkrow .nm{font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rkrow .nm small{font-weight:400;color:var(--fg3);margin-left:8px;font-size:12px}
+.rkrow .val{font-family:var(--f-mono);font-weight:600;color:var(--brass-hi)}
+.rkrow.me{border-color:var(--brass);background:rgba(224,180,90,.12)}
+.rkgap{text-align:center;color:var(--fg3);letter-spacing:.3em}
+.rkmine{margin:0 0 18px;font-size:15px;color:var(--fg2)}
+.rkmine b{color:var(--brass-hi);font-family:var(--f-mono)}
 /* sign-in & sync */
 .signrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .sgerr{color:var(--bad);min-height:1.5em;font-size:14px}
@@ -588,7 +621,7 @@ const randDigits=()=>String(ri(1,9))+ri(0,9)+ri(0,9);
    save data
    ========================================================= */
 const KEY='napier-logtable-v2';
-function fresh(){return {v:2,name:'',xp:0,coins:20,done:{},stars:{},run:{},m:{},badges:{},unlockAll:false,dn:0,bestStreak:0,rushBest:0,muted:false,hintUsed:false,firstOk:false,student:null,logUrl:'',lastSync:0};}
+function fresh(){return {v:2,name:'',xp:0,coins:20,done:{},stars:{},run:{},m:{},badges:{},unlockAll:false,dn:0,bestStreak:0,rushBest:0,muted:false,hintUsed:false,firstOk:false,student:null,guest:false,logUrl:'',lastSync:0};}
 const CUR='napier-current-student';
 const skey=sid=>sid?KEY+':'+sid:KEY;
 const sidOf=st=>st?`${st.cls}-${st.seat}`:'';
@@ -1309,7 +1342,7 @@ function go(name,arg){
   if(screen==='play'&&P&&P.enter){addActive();P.enter=0;}
   if(R&&R.raf){cancelAnimationFrame(R.raf);R=null;}
   screen=name; view.innerHTML='';
-  ({title:showTitle,hub:showHub,play:showPlay,board:showBoard,rush:showRush,book:showBook,teacher:showTeacher})[name](arg);
+  ({title:showTitle,hub:showHub,play:showPlay,board:showBoard,rush:showRush,book:showBook,teacher:showTeacher,rank:showRank})[name](arg);
   updateHud(); window.scrollTo(0,0);
 }
 document.addEventListener('keydown',e=>{
@@ -1338,17 +1371,30 @@ function showTitle(){
   <div class="tt"><p class="tt-latin">Mirifici Logarithmorum Canonis Descriptio</p><h1 class="logo">納皮爾的<br>對數表</h1><p class="tt-sc">Edinburgh · MDCXIV</p>
   <p class="tt-lead">1614 年，一本幾乎只印著數字的書，把天文學家好幾個月的乘法縮短成幾天。你是納皮爾的新助手。從愛丁堡的港口出發，沿著航線打開八個上鎖的房間，把它重建出來。</p>
   <div class="tt-menu"><button class="gbtn" type="button" id="tStart">${has?'繼續航行':'揚帆出發'}</button><button class="gbtn ghost" type="button" id="tSet">設定</button><span id="tSnd"></span></div>
-  ${S.student?`<p class="who"><span>目前登入：${esc(S.student.cls)} 班 ${esc(S.student.seat)} 號 <b>${esc(S.student.name)}</b></span><button class="lnk" type="button" id="tSwitch">不是你？換人登入</button></p>`:''}
-  <p class="press">— 按任意鍵開始 —</p>
+  ${S.student?`<p class="who"><span>目前登入：${esc(S.student.cls)} 班 ${esc(S.student.seat)} 號 <b>${esc(S.student.name)}</b></span><button class="lnk" type="button" id="tSwitch">不是你？換人登入</button></p>`:S.guest?`<p class="who"><span>目前以<b>訪客</b>身分遊玩（紀錄不會交給老師，也不會上排行榜）</span><button class="lnk" type="button" id="tSwitch">改用班級姓名登記</button></p>`:''}
+  <p class="press" id="tPress">— 點一下畫面或按任意鍵開始 —</p>
   <div class="tt-foot"><span>數學 B · 指數與對數</span><span>8 個密室 · ${QN} 道鎖 · 16 張技能卡</span><span>設計：余佳霖老師</span><button class="lnk" type="button" id="tTeach">教師入口</button></div></div></section>`;
   $('#tStart').onclick=startGame; $('#tSet').onclick=openSettings; $('#tTeach').onclick=teacherLogin;
   $('#tSnd').append(soundBtn());
-  const sw=$('#tSwitch');if(sw)sw.onclick=()=>{switchStudent();go('title');};
+  const sw=$('#tSwitch');if(sw)sw.onclick=()=>{if(S.guest){signIn().then(r=>{if(r==='ok')go('hub');});return;}switchStudent();go('title');};
+  const sec=view.querySelector('.title');
+  sec.addEventListener('click',e=>{if(e.target.closest('button,a,input,label,select'))return;startGame();});
+  try{window.focus();}catch(e){}
 }
+let starting=false;
 function startGame(){
+  if(starting||ovOpen) return;
   sfx('open');
-  if(S.student){go('hub');return;}
-  signIn().then(()=>go('hub'));
+  if(S.student||S.guest){go('hub');return;}
+  starting=true;
+  signIn().then(r=>{starting=false;if(r==='ok'||r==='guest')go('hub');});
+}
+function enterGuest(){
+  const keepMute=S.muted;
+  if(S.student){flush();try{localStorage.removeItem(CUR);}catch(e){}S=loadKey(KEY)||fresh();}
+  if(!S.guest&&!S.student&&!(S.xp>0)){S=fresh();}
+  S.student=null;S.guest=true;S.name='訪客';S.muted=keepMute;save();
+  D.board=null;D.streak=0;selCh=null;
 }
 function signIn(){
   return overlay((o,close)=>{
@@ -1356,7 +1402,9 @@ function signIn(){
     <div class="signrow"><label class="fld" for="sgC">班級<input type="text" id="sgC" maxlength="6" inputmode="numeric" placeholder="例如 211" autocomplete="off"></label><label class="fld" for="sgS">座號<input type="text" id="sgS" maxlength="3" inputmode="numeric" placeholder="例如 5" autocomplete="off"></label></div>
     <label class="fld" for="sgN">姓名<input type="text" id="sgN" maxlength="12" placeholder="例如 王小明" autocomplete="off"></label>
     <p class="sgerr" id="sgE" aria-live="polite"></p>
-    <div class="ov-row"><button class="gbtn" type="button" data-primary>簽名上船</button></div></div>`;
+    <div class="ov-row"><button class="gbtn" type="button" data-primary>簽名上船</button><button class="gbtn ghost" type="button" id="sgX">取消</button></div>
+    <div class="orline">或</div>
+    <div class="ov-row"><button class="gbtn ghost sm" type="button" id="sgG">以訪客身分試玩</button><span class="guestnote">不用填資料，進度只存在這台裝置，不會交給老師，也不會上排行榜。之後可以再改用班級姓名登記，進度會一起帶過去。</span></div></div>`;
     const c=o.querySelector('#sgC'),sn=o.querySelector('#sgS'),n=o.querySelector('#sgN'),er=o.querySelector('#sgE');
     setTimeout(()=>c.focus(),80);
     const ok=()=>{
@@ -1367,14 +1415,17 @@ function signIn(){
       const st={cls,seat:String(+seat).padStart(2,'0'),name:name.slice(0,12)};
       const sid=sidOf(st), prev=loadKey(skey(sid)), keepUrl=S.logUrl, keepMute=S.muted;
       if(prev) S=prev;
-      else if(!S.student&&(S.xp>0||Object.keys(S.done).length)){try{localStorage.removeItem(KEY);}catch(e){}}
+      else if(!S.student&&(S.xp>0||Object.keys(S.done).length)){try{localStorage.removeItem(KEY);}catch(e){}S.guest=true;}
       else S=fresh();
       S.student=st;S.name=st.name;if(!S.logUrl)S.logUrl=keepUrl;if(!prev)S.muted=keepMute;save();
       try{localStorage.setItem(CUR,sid);}catch(e){}
       D.board=null;D.streak=0;selCh=null;
-      logEv('login',{note:prev?'回到遊戲':'第一次登入'});
-      close();
+      const wasGuest=S.guest&&!prev;S.guest=false;save();
+      logEv('login',{note:prev?'回到遊戲':wasGuest?'從訪客改為登記（帶入訪客進度）':'第一次登入'});
+      close('ok');
     };
+    o.querySelector('#sgX').onclick=()=>close('cancel');
+    o.querySelector('#sgG').onclick=()=>{enterGuest();close('guest');};
     o.querySelector('[data-primary]').onclick=ok;
     [c,sn,n].forEach(x=>x.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();ok();}}));
   });
@@ -1385,6 +1436,7 @@ function switchStudent(){
   try{localStorage.removeItem(CUR);}catch(e){}
   const keepUrl=S.logUrl,keepMute=S.muted;
   S=fresh();S.logUrl=keepUrl;S.muted=keepMute;D.board=null;D.streak=0;selCh=null;
+  try{localStorage.removeItem(KEY);}catch(e){}
 }
 
 /* =========================================================
@@ -1459,16 +1511,19 @@ function showHub(){
   mapCol.innerHTML=`<div class="mapbox"><span class="mapcap">Charta Marina · 航海圖</span>${mapSVG()}</div>`;
   const side=E('div','side');
   side.innerHTML=`<div class="card brass"><div class="player"><div class="avatar">${PORTRAIT.you}</div><div><div class="pname">${esc(pname())} <span class="lvb">${lv}</span></div><div class="rank" data-h="rank"></div><div class="bigxp"><i data-h="xp"></i></div><div class="pstats"><span data-h="xptext"></span></div></div></div>
+    ${S.guest?'<p class="guestnote">你現在是<b>訪客</b>：進度只存在這台裝置，不會交給老師。<button class="lnk" type="button" id="hubReg">改用班級姓名登記</button></p>':''}
     <div class="pstats"><span>${COIN} <b data-h="coin"></b> 銀幣</span><span>★ <b>${starN}</b> / 24</span><span>成就 <b>${Object.keys(S.badges).length}</b> / ${BADGES.length}</span></div></div>
     <div class="card pv" id="pv"></div>
     <div class="modes">
+      <button class="mode wide" type="button" data-m="rank"><span class="trophy" aria-hidden="true">🏆</span><div><span class="mi">Gloria</span><b>船員排行榜</b><span>${S.student?'看看你在班上和全年級排第幾名。':'登記班級姓名的船員才會上榜。'}</span></div></button>
       <button class="mode" type="button" data-m="board"><span class="mi">Portus</span><b>港口委託</b><span>港口告示板上的計算委託，賺銀幣和經驗。</span></button>
       <button class="mode" type="button" data-m="rush"><span class="mi">Tempestas</span><b>風暴快算</b><span>暴風雨來了！60 秒限時連答，連擊越多分數越高。</span></button>
       <button class="mode" type="button" data-m="book"><span class="mi">Diarium</span><b>航海日誌</b><span>技能卡、成就徽章、筆記本。</span></button>
-      <button class="mode" type="button" data-m="set"><span class="mi">Optiones</span><b>設定</b><span>改名字、音效、教師工具。</span></button>
+      <button class="mode" type="button" data-m="set"><span class="mi">Optiones</span><b>設定</b><span>音效、換人登入、教師入口。</span></button>
     </div>`;
   grid.append(mapCol,side); page.append(grid); view.append(page);
   side.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{sfx('open');const m=b.dataset.m;if(m==='set')openSettings();else go(m);});
+  const hr=side.querySelector('#hubReg');if(hr)hr.onclick=()=>signIn().then(r=>{if(r==='ok')go('hub');});
   const bindNodes=()=>mapCol.querySelectorAll('.node').forEach(n=>{
     const act=()=>{const i=+n.dataset.i;selCh=i;sfx('tick');mapCol.querySelector('.mapbox').innerHTML=`<span class="mapcap">Charta Marina · 航海圖</span>${mapSVG()}`;bindNodes();renderPV();};
     n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
@@ -1924,6 +1979,62 @@ function showBookTab(){
 }
 
 /* =========================================================
+   leaderboard
+   ========================================================= */
+const RK={data:null,at:0,cat:'xp',scope:'class'};
+const RKCATS=[['xp','等級經驗','XP',r=>r.xp,r=>`Lv ${r.lv} · ${r.xp} XP`],['stars','星星','★',r=>r.stars,r=>`${r.stars} ★`],['gold','金卡','金卡',r=>r.gold,r=>`${r.gold} 張金卡`],['rush','風暴快算','分',r=>r.rush,r=>`${r.rush} 分`],['dn','港口委託','份',r=>r.dn,r=>`${r.dn} 份`]];
+async function fetchBoard(){
+  if(!logUrl()||typeof fetch!=='function') return {ok:false,msg:'這個版本沒有連上紀錄服務。'};
+  try{const r=await fetch(logUrl(),{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'board'})});const d=await r.json();return d.ok?d:{ok:false,msg:'排行榜暫時讀不到，等一下再試。'};}
+  catch(e){return {ok:false,msg:'連不上排行榜。請從老師給的 GitHub Pages 網址開啟遊戲。'};}
+}
+function showRank(){
+  const page=E('div','screen');
+  const hud=E('header','hud',`<button class="hb" type="button" id="back">◀ 航海圖</button><div class="hud-ch"><span class="rn">🏆</span><b>船員排行榜</b></div><div class="hud-r">${hudStats()}</div>`);
+  const rf=E('button','hb','重新整理');rf.type='button';rf.onclick=()=>{RK.data=null;go('rank');};
+  hud.querySelector('.hud-r').append(rf,soundBtn());page.append(hud);
+  page.insertAdjacentHTML('beforeend',`<div class="shead"><div><h1>船員排行榜</h1><p class="sub">只有登記班級姓名的船員會上榜。排名每分鐘更新一次，你剛拿到的分數可能要稍等一下才會出現。</p></div></div><div class="body" id="rkbody"><div class="tempty">讀取排行榜中……</div></div>`);
+  view.append(page);$('#back').onclick=()=>go('hub');
+  const body=$('#rkbody');
+  if(!S.student){
+    body.innerHTML=`<div class="card brass" style="max-width:560px"><h2>登記上船才能上榜</h2><p>${S.guest?'你現在是訪客，成績只存在這台裝置。':''}填好班級、座號和姓名，你的星星、金卡和快算分數就會出現在排行榜上；目前的進度也會一起帶過去。</p><div class="ov-row"><button class="gbtn" type="button" id="rkReg">登記班級姓名</button></div></div>`;
+    $('#rkReg').onclick=()=>signIn().then(r=>{if(r==='ok'){flush();go('rank');}});
+    return;
+  }
+  const draw=()=>{
+    if(!RK.data||!RK.data.ok){body.innerHTML=`<div class="tempty">${esc((RK.data&&RK.data.msg)||'讀不到排行榜。')}</div>`;return;}
+    const me=S.student, isMe=r=>r.cls===me.cls&&r.seat===me.seat;
+    let rows=RK.data.rows.slice();
+    if(!rows.some(isMe)) rows.push({cls:me.cls,seat:me.seat,name:me.name,lv:levelOf(S.xp),xp:S.xp,stars:Object.values(S.stars).reduce((a,b)=>a+b,0),gold:SKILLS.filter(k=>level(k.id)===3).length,rush:S.rushBest,dn:S.dn});
+    else rows=rows.map(r=>isMe(r)?Object.assign({},r,{xp:Math.max(r.xp,S.xp),lv:Math.max(r.lv,levelOf(S.xp)),stars:Math.max(r.stars,Object.values(S.stars).reduce((a,b)=>a+b,0)),gold:Math.max(r.gold,SKILLS.filter(k=>level(k.id)===3).length),rush:Math.max(r.rush,S.rushBest),dn:Math.max(r.dn,S.dn)}):r);
+    if(RK.scope==='class') rows=rows.filter(r=>r.cls===me.cls);
+    const cat=RKCATS.find(c=>c[0]===RK.cat), val=cat[3];
+    rows=rows.filter(r=>val(r)>0||isMe(r)).sort((a,b)=>val(b)-val(a)||(+a.seat)-(+b.seat));
+    let rank=0,prev=null;rows.forEach((r,i)=>{if(val(r)!==prev){rank=i+1;prev=val(r);}r._rk=val(r)>0?rank:'—';});
+    const mine=rows.find(isMe);
+    const who=r=>`${esc(r.name)}${isMe(r)?'（你）':''}`;
+    const top=rows.filter(r=>val(r)>0).slice(0,3);
+    const order=[top[1],top[0],top[2]];
+    let h=`<div class="rk-scope" role="tablist">${[['class',`我的班級（${esc(me.cls)} 班）`],['all','全部班級']].map(([k,n])=>`<button class="tab" type="button" role="tab" data-s="${k}" aria-selected="${RK.scope===k}">${n}</button>`).join('')}</div>
+      <div class="tabs" role="tablist">${RKCATS.map(c=>`<button class="tab" type="button" role="tab" data-c="${c[0]}" aria-selected="${RK.cat===c[0]}">${c[1]}</button>`).join('')}</div>
+      <p class="rkmine">${mine&&mine._rk!=='—'?`你目前排在第 <b>${mine._rk}</b> 名（共 ${rows.filter(r=>val(r)>0).length} 人上榜）`:`你在「${cat[1]}」還沒有成績，去玩一局就能上榜！`}</p>`;
+    if(top.length){
+      h+=`<div class="podium">${order.map((r,k)=>{if(!r)return '<div></div>';const p=[2,1,3][k];return `<div class="pod p${p}${isMe(r)?' me':''}"><div class="pf">${['I','II','III'][p-1]}</div><div class="pn">${who(r)}</div><div class="pc">${RK.scope==='all'?esc(r.cls)+' 班':''}</div><div class="pv2">${esc(cat[4](r))}</div><div class="base"></div></div>`;}).join('')}</div>`;
+    }
+    const rest=rows.filter(r=>val(r)>0).slice(3,50);
+    h+=`<div class="rklist">${rest.map(r=>`<div class="rkrow${isMe(r)?' me':''}"><span class="no">${r._rk}</span><span class="nm">${who(r)}${RK.scope==='all'?`<small>${esc(r.cls)} 班</small>`:''}</span><span class="val">${esc(cat[4](r))}</span></div>`).join('')}
+      ${mine&&mine._rk!=='—'&&mine._rk>50?`<div class="rkgap">⋯</div><div class="rkrow me"><span class="no">${mine._rk}</span><span class="nm">${who(mine)}</span><span class="val">${esc(cat[4](mine))}</span></div>`:''}</div>`;
+    if(!top.length) h+=`<div class="tempty">這一項還沒有人上榜。成為第一個吧！</div>`;
+    body.innerHTML=h;
+    body.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{RK.scope=b.dataset.s;sfx('tick');draw();});
+    body.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{RK.cat=b.dataset.c;sfx('tick');draw();});
+  };
+  if(RK.data&&RK.data.ok&&Date.now()-RK.at<60000){draw();return;}
+  flush();
+  setTimeout(()=>fetchBoard().then(d=>{RK.data=d;RK.at=Date.now();if(screen==='rank')draw();}),LQ.length?1500:0);
+}
+
+/* =========================================================
    teacher dashboard
    ========================================================= */
 const TK='napier-teacher-key';
@@ -2075,7 +2186,7 @@ function studentDetail(s,m){
 function openSettings(){
   overlay((o,close)=>{
     o.innerHTML=`<div class="ovc"><div class="ov-k">Optiones · 設定</div><h2>設定</h2>
-     <div class="stuline"><span>${S.student?`${esc(S.student.cls)} 班 ${esc(S.student.seat)} 號 <b>${esc(S.student.name)}</b>`:'還沒登記上船'}</span><button class="gbtn ghost sm" type="button" id="sSwitch">換人登入</button></div>
+     <div class="stuline"><span>${S.student?`${esc(S.student.cls)} 班 ${esc(S.student.seat)} 號 <b>${esc(S.student.name)}</b>`:S.guest?'目前是<b>訪客</b>':'還沒登記上船'}</span><button class="gbtn ghost sm" type="button" id="sSwitch">${S.guest?'改用班級姓名登記':'換人登入'}</button></div>
      <p class="syncst" id="sSync"></p>
      <div class="ov-row"><label class="ck"><input type="checkbox" id="sMute" ${S.muted?'':'checked'}> 開啟音效</label><button class="gbtn ghost sm" type="button" id="sTest">測試音效</button></div>
      <div class="ov-row"><button class="gbtn ghost sm" type="button" id="sFlush">立即上傳紀錄</button><button class="gbtn ghost sm" type="button" id="sTeach">教師入口</button></div>
@@ -2097,7 +2208,7 @@ function openSettings(){
     o.querySelector('#sTest').onclick=()=>{unlockAudio();if(S.muted){S.muted=false;save();o.querySelector('#sMute').checked=true;}sfx('unlock');setTimeout(()=>sfx('ok'),250);setTimeout(()=>sfx('coin'),700);};
     o.querySelector('#sTeach').onclick=()=>close('teacher');
     o.querySelector('#sFlush').onclick=()=>{if(!logUrl()){sy.textContent=syncText();return;}if(!LQ.length){sy.textContent='沒有待上傳的紀錄。';return;}sy.textContent='上傳中……';flush();setTimeout(()=>sy.textContent=syncText(),2500);};
-  }).then(a=>{if(a==='teacher'){teacherLogin();return;}if(a==='switch'){switchStudent();go('title');return;}if(screen==='hub'||screen==='title')go(screen);else updateHud();});
+  }).then(a=>{if(a==='teacher'){teacherLogin();return;}if(a==='switch'){if(S.guest){signIn().then(r=>{if(r==='ok')go('hub');});return;}switchStudent();go('title');return;}if(screen==='hub'||screen==='title')go(screen);else updateHud();});
 }
 
 window.addEventListener('resize',()=>{const c=FX.c,dpr=window.devicePixelRatio||1;c.width=innerWidth*dpr;c.height=innerHeight*dpr;});
