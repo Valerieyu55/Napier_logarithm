@@ -993,13 +993,9 @@ const CH=[
  wb('pow2'),
  nar('工作台上多了一張 2 的次方表：左邊是次方 n，右邊是 2<sup>n</sup> 的值。點一下可以做記號。'),
  say('napier','用這張表算 64 × 512。不准直接乘。'),
- Q({prompt:'64 是 2 的幾次方？',answer:6,hint:'在表裡找到 64，看它左邊的 n。',explain:'64 = 2<sup>6</sup>'}),
- Q({prompt:'512 是 2 的幾次方？',answer:9,explain:'512 = 2<sup>9</sup>'}),
- Q({prompt:'把兩個次方加起來：6 + 9 = ?',answer:15}),
- Q({prompt:'查表：2<sup>15</sup> 是多少？這就是 64 × 512 的答案。',answer:32768,skill:'S1',hint:'在表裡找 n = 15。',explain:'64 × 512 = 2<sup>6</sup> × 2<sup>9</sup> = 2<sup>6+9</sup> = 2<sup>15</sup> = 32768。整個過程只做了一次加法。'}),
+ Q({prompt:'用表算 64 × 512 = ?',answer:32768,skill:'S1',hint:'先在表裡找出 64 和 512 各是 2 的幾次方，把兩個次方相加，再查表找回答案。',explain:'64 × 512 = 2<sup>6</sup> × 2<sup>9</sup> = 2<sup>6+9</sup> = 2<sup>15</sup> = 32768。整個過程只做了一次加法。'}),
  say('napier','查表、相加、再查表。這就是我要的。'),
  note('同底數的次方相乘，指數相加','a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup>'),
- Q({prompt:'換你來：用表算 128 × 1024。',answer:131072,skill:'S1',hint:'128 = 2<sup>7</sup>，1024 = 2<sup>10</sup>。',explain:'2<sup>7</sup> × 2<sup>10</sup> = 2<sup>17</sup> = 131072。'}),
  C({prompt:'3<sup>4</sup> × 3<sup>5</sup> = ?',choices:['3<sup>20</sup>','3<sup>9</sup>','9<sup>9</sup>','9<sup>20</sup>'],answer:1,skill:'S1',explain:'底數 3 不變，指數相加：4 + 5 = 9。'}),
  say('napier','很好。今天先到這裡，明天我們來看除法。'),
 ]},
@@ -1008,15 +1004,11 @@ const CH=[
  nar('第二天清晨，2 的次方表還攤在桌上。'),
  say('napier','乘法變成了加法。那除法會變成什麼？'),
  Q({prompt:'用表算 65536 ÷ 256。',answer:256,skill:'S2',hint:'65536 = 2<sup>16</sup>，256 = 2<sup>8</sup>。兩個指數要怎麼處理？',explain:'2<sup>16</sup> ÷ 2<sup>8</sup> = 2<sup>16−8</sup> = 2<sup>8</sup> = 256。除法變成了減法。'}),
- C({prompt:'a<sup>m</sup> ÷ a<sup>n</sup> 等於？',choices:['a<sup>m÷n</sup>','a<sup>m+n</sup>','a<sup>m−n</sup>','1<sup>m−n</sup>'],answer:2,skill:'S2',explain:'同底數相除，指數相減。'}),
  say('napier','天文學家還常算平方、立方。8 的 4 次方，你會怎麼算？'),
- Q({prompt:'8 是 2 的幾次方？',answer:3}),
- Q({prompt:'8<sup>4</sup> = (2<sup>3</sup>)<sup>4</sup> = 2<sup>?</sup>',answer:12,skill:'S3',hint:'(2<sup>3</sup>)<sup>4</sup> = 2<sup>3</sup> × 2<sup>3</sup> × 2<sup>3</sup> × 2<sup>3</sup>，指數要加幾次？',explain:'3 + 3 + 3 + 3 = 3 × 4 = 12。次方的次方，指數相乘。'}),
- Q({prompt:'查表：8<sup>4</sup> = ?',answer:4096,skill:'S3',explain:'8<sup>4</sup> = 2<sup>12</sup> = 4096。'}),
+ Q({prompt:'8<sup>4</sup> = ?（用表算）',answer:4096,skill:'S3',hint:'8 = 2<sup>3</sup>，所以 8<sup>4</sup> = (2<sup>3</sup>)<sup>4</sup>。指數要怎麼處理？',explain:'8<sup>4</sup> = (2<sup>3</sup>)<sup>4</sup> = 2<sup>3×4</sup> = 2<sup>12</sup> = 4096。次方的次方，指數相乘。'}),
  say('you','次方變成乘法。那開根號，是不是變成除法？'),
  say('napier','試試看。√4096 可以寫成 4096<sup>1/2</sup>。'),
- Q({prompt:'4096 = 2<sup>12</sup>，所以 √4096 = 2<sup>?</sup>',answer:6,skill:'S4',explain:'(2<sup>12</sup>)<sup>1/2</sup> = 2<sup>12 × 1/2</sup> = 2<sup>6</sup>。'}),
- Q({prompt:'所以 √4096 = ?',answer:64,skill:'S4',explain:'2<sup>6</sup> = 64。檢查一下：64 × 64 = 4096。'}),
+ Q({prompt:'√4096 = 4096<sup>1/2</sup> = ?',answer:64,skill:'S4',hint:'4096 = 2<sup>12</sup>，開平方根就是指數除以 2。',explain:'(2<sup>12</sup>)<sup>1/2</sup> = 2<sup>6</sup> = 64。檢查一下：64 × 64 = 4096。'}),
  Q({prompt:'再一題：立方根 ∛32768 = ?',answer:32,skill:'S4',hint:'32768 = 2<sup>15</sup>，開立方根就是指數除以 3。',explain:'2<sup>15 ÷ 3</sup> = 2<sup>5</sup> = 32。'}),
  note('每一種運算都降一級','<table class="ladder"><tr><td>乘法</td><td>→</td><td>指數相加</td></tr><tr><td>除法</td><td>→</td><td>指數相減</td></tr><tr><td>次方</td><td>→</td><td>指數相乘</td></tr><tr><td>開根號</td><td>→</td><td>指數相除</td></tr></table>'),
  say('napier','只要有這張表，最難的運算都能降一級。'),
@@ -1031,9 +1023,7 @@ const CH=[
  wb('curve'),
  nar('納皮爾把表收起來，換上一條曲線 y = 2<sup>x</sup>。拖動滑桿，指數 x 可以是任何實數。'),
  Q({prompt:'拖動滑桿，找出讓 2<sup>x</sup> ≈ 3 的 x（到小數第二位）。',answer:1.585,tol:0.01,show:'1.58 或 1.59',skill:'S5',hint:'先粗調到 1.5 和 1.6 之間，再用 ±0.01 的按鈕微調，看 2<sup>x</sup> 什麼時候最接近 3。',explain:'2<sup>1.585</sup> ≈ 3。原來 3 也是 2 的「次方」，大約是 1.585 次方。'}),
- Q({prompt:'再找讓 2<sup>x</sup> ≈ 10 的 x（到小數第二位）。',answer:3.322,tol:0.01,show:'3.32',skill:'S5',explain:'2<sup>3.322</sup> ≈ 10。'}),
- say('napier','有了這兩個數，3 × 10 就不必乘了。'),
- Q({prompt:'3 × 10 = 2<sup>1.585</sup> × 2<sup>3.322</sup> = 2<sup>?</sup>',answer:4.907,tol:0.003,skill:'S1',explain:'1.585 + 3.322 = 4.907。把滑桿移到 4.907 看看，2<sup>4.907</sup> 是不是很接近 30？'}),
+ nar('用同樣的方法還能找到 2<sup>3.322</sup> ≈ 10。於是 3 × 10 = 2<sup>1.585</sup> × 2<sup>3.322</sup> = 2<sup>4.907</sup>，乘法又變回了加法。'),
  C({prompt:'觀察曲線 y = 2<sup>x</sup>，哪一個敘述正確？',choices:['曲線會通過 (0, 0)','x 越大，y 越小','y 永遠大於 0','x 是負數時，y 也是負數'],answer:2,skill:'S5',explain:'2 的任何次方都是正數，所以曲線永遠在 x 軸上方。x = 0 時 y = 1，曲線通過 (0, 1)。'}),
  Q({prompt:'把滑桿移到 x = −1。2<sup>−1</sup> = ?（可以輸入分數）',answer:0.5,tol:0.001,show:'1/2',skill:'S4',explain:'2<sup>−1</sup> = 1/2。負指數就是倒數。'}),
  note('指數函數 y = a<sup>x</sup>（a > 0，a ≠ 1）','圖形恆在 x 軸上方，必通過 (0, 1)。<br>a > 1 時遞增；0 < a < 1 時遞減。'),
@@ -1046,11 +1036,8 @@ const CH=[
  note('對數的定義','若 a<sup>x</sup> = b，則 x = log<sub>a</sub> b<br>讀作「以 a 為底，b 的對數」（a > 0，a ≠ 1，b > 0）'),
  say('napier','換句話說，log<sub>a</sub> b 問的是：「a 要幾次方，才會等於 b？」'),
  Q({prompt:'log<sub>2</sub> 32 = ?',answer:5,skill:'S7',hint:'2 的幾次方是 32？',explain:'2<sup>5</sup> = 32，所以 log<sub>2</sub> 32 = 5。'}),
- Q({prompt:'log<sub>3</sub> 81 = ?',answer:4,skill:'S7',explain:'3<sup>4</sup> = 81。'}),
  Q({prompt:'log<sub>10</sub> 0.001 = ?',answer:-3,skill:'S7',hint:'0.001 = 1/1000，是 10 的負幾次方？',explain:'0.001 = 10<sup>−3</sup>，所以答案是 −3。'}),
- Q({prompt:'log<sub>2</sub> 1 = ?',answer:0,skill:'S7',explain:'2<sup>0</sup> = 1。任何底數的 0 次方都是 1，所以 log<sub>a</sub> 1 = 0。'}),
  C({prompt:'5<sup>3</sup> = 125 寫成對數式是？',choices:['log<sub>3</sub> 125 = 5','log<sub>5</sub> 125 = 3','log<sub>125</sub> 5 = 3','log<sub>5</sub> 3 = 125'],answer:1,skill:'S6',explain:'底數 5 留在 log 的右下角，指數 3 是對數的值。'}),
- C({prompt:'log<sub>4</sub> 2 = 1/2 寫成指數式是？',choices:['4<sup>1/2</sup> = 2','2<sup>1/2</sup> = 4','4<sup>2</sup> = 1/2','(1/2)<sup>4</sup> = 2'],answer:0,skill:'S6',explain:'4<sup>1/2</sup> = √4 = 2。'}),
  C({prompt:'下面哪一個沒有意義？',choices:['log<sub>2</sub> 8','log<sub>8</sub> 2','log<sub>2</sub> (−8)','log<sub>2</sub> 1'],answer:2,skill:'S6',explain:'2<sup>x</sup> 永遠是正數，不可能等於 −8，所以真數必須大於 0。'}),
  Q({prompt:'挑戰：log<sub>4</sub> 8 = ?（可以輸入分數）',answer:1.5,tol:0.002,show:'3/2',skill:'S7',hint:'4 = 2<sup>2</sup>，8 = 2<sup>3</sup>。4 的幾次方會等於 8？',explain:'4<sup>3/2</sup> = (√4)<sup>3</sup> = 2<sup>3</sup> = 8，所以答案是 3/2。'}),
  say('napier','每一個對數，都是某個數的「次方」。我要把它們一個一個算出來，排成一張表。'),
@@ -1059,13 +1046,10 @@ const CH=[
 {year:'1614',place:'愛丁堡',scene:'study',title:'三條法則',hook:'把指數律翻譯成對數的語言',steps:[
  say('napier','書快要付印了。我要把規則寫清楚：指數律翻成對數的語言，會變成什麼？'),
  note('對數的運算性質（M、N > 0）','log<sub>a</sub> MN = log<sub>a</sub> M + log<sub>a</sub> N<br>log<sub>a</sub> (M/N) = log<sub>a</sub> M − log<sub>a</sub> N<br>log<sub>a</sub> M<sup>r</sup> = r · log<sub>a</sub> M'),
- say('napier','你在曲線上量過：log<sub>2</sub> 3 ≈ 1.585，log<sub>2</sub> 10 ≈ 3.322。只用這兩個數，你能算出多少對數？'),
+ say('napier','你在曲線上量過 log<sub>2</sub> 3 ≈ 1.585，也知道 log<sub>2</sub> 10 ≈ 3.322。只用這兩個數，你能算出多少對數？'),
  Q({prompt:'log<sub>2</sub> 6 = ?',answer:2.585,tol:0.002,skill:'S8',hint:'6 = 2 × 3，而 log<sub>2</sub> 2 = 1。',explain:'log<sub>2</sub> 6 = log<sub>2</sub> 2 + log<sub>2</sub> 3 ≈ 1 + 1.585 = 2.585。'}),
  Q({prompt:'log<sub>2</sub> 5 = ?',answer:2.322,tol:0.002,skill:'S9',hint:'5 = 10 ÷ 2。',explain:'log<sub>2</sub> 5 = log<sub>2</sub> 10 − log<sub>2</sub> 2 ≈ 3.322 − 1 = 2.322。'}),
  Q({prompt:'log<sub>2</sub> 9 = ?',answer:3.17,tol:0.003,skill:'S10',hint:'9 = 3<sup>2</sup>。',explain:'log<sub>2</sub> 9 = 2 log<sub>2</sub> 3 ≈ 2 × 1.585 = 3.170。'}),
- Q({prompt:'log<sub>2</sub> 1.5 = ?',answer:0.585,tol:0.002,skill:'S9',hint:'1.5 = 3 ÷ 2。',explain:'log<sub>2</sub> 3 − log<sub>2</sub> 2 ≈ 1.585 − 1 = 0.585。'}),
- Q({prompt:'log<sub>2</sub> 45 = ?',answer:5.492,tol:0.004,skill:'S8',hint:'45 = 9 × 5，這兩個你前面都算過了。',explain:'log<sub>2</sub> 9 + log<sub>2</sub> 5 ≈ 3.170 + 2.322 = 5.492。'}),
- C({prompt:'log<sub>2</sub> √3 ≈ ?',choices:['0.792','1.259','3.170','0.585'],answer:0,skill:'S10',explain:'√3 = 3<sup>1/2</sup>，所以 log<sub>2</sub> √3 = ½ × 1.585 ≈ 0.792。'}),
  C({prompt:'下面哪一條是錯的？',choices:['log M + log N = log MN','log (M + N) = log M + log N','log M − log N = log (M/N)','log M<sup>2</sup> = 2 log M'],answer:1,skill:'S8',explain:'對數把乘法變成加法，但不會拆開加法。例如 log<sub>2</sub> (1 + 1) = log<sub>2</sub> 2 = 1，可是 log<sub>2</sub> 1 + log<sub>2</sub> 1 = 0。'}),
  nar('1614 年，納皮爾的書在愛丁堡出版：<i>Mirifici Logarithmorum Canonis Descriptio</i>，意思是「奇妙對數表的描述」。'),
  nar('他在序言裡寫道，希望讓計算的人擺脫冗長又容易出錯的乘除。'),
@@ -1078,11 +1062,8 @@ const CH=[
  say('napier','為什麼是 10？'),
  say('briggs','因為我們寫數字用的是十進位。您看。'),
  note('常用對數','以 10 為底的對數叫常用對數，log<sub>10</sub> x 簡寫成 log x。'),
- Q({prompt:'log 1000 = ?',answer:3,skill:'S7',explain:'10<sup>3</sup> = 1000。'}),
- Q({prompt:'log 0.01 = ?',answer:-2,skill:'S7',explain:'0.01 = 10<sup>−2</sup>。'}),
  say('briggs','任何正數都能寫成 a × 10<sup>n</sup>，其中 1 ≤ a < 10。'),
- Q({prompt:'31400 = 3.14 × 10<sup>?</sup>',answer:4,skill:'S12',explain:'小數點往右移 4 位：3.14 → 31400。'}),
- C({prompt:'所以 log 31400 = ?',choices:['4 × log 3.14','log 4 + log 3.14','4 + log 3.14','3.14 + log 4'],answer:2,skill:'S12',explain:'log (3.14 × 10<sup>4</sup>) = log 3.14 + log 10<sup>4</sup> = log 3.14 + 4。'}),
+ C({prompt:'31400 = 3.14 × 10<sup>4</sup>，所以 log 31400 = ?',choices:['4 × log 3.14','log 4 + log 3.14','4 + log 3.14','3.14 + log 4'],answer:2,skill:'S12',explain:'log (3.14 × 10<sup>4</sup>) = log 3.14 + log 10<sup>4</sup> = log 3.14 + 4。'}),
  say('briggs','看到了嗎？小數點的位置只影響整數部分。表只需要記 1 到 10 之間的數！'),
  note('首數與尾數','x = a × 10<sup>n</sup>（1 ≤ a < 10）時，log x = n + log a<br>整數 n 叫首數，由小數點的位置決定；0 ≤ log a < 1 叫尾數，由數字的排列決定。'),
  Q({prompt:'已知 log 3.14 ≈ 0.4969，log 31400 = ?',answer:4.4969,tol:0.0005,skill:'S12',explain:'4 + 0.4969 = 4.4969。'}),
@@ -1102,18 +1083,12 @@ const CH=[
  nar('工作台上是一頁常用對數表。左邊的 N 是前兩位數字，上方是第三位數字，表中的值是尾數（省略了「0.」）。'),
  say('briggs','先練查表。log 4.73 在 N = 47 那一列、3 那一欄。'),
  Q({prompt:'log 4.73 = ?（到小數第四位）',answer:0.6749,tol:0.00015,skill:'S13',explain:'表上寫 6749，代表 0.6749。'}),
- Q({prompt:'log 473 = ?',answer:2.6749,tol:0.00015,skill:'S13',hint:'473 = 4.73 × 10<sup>2</sup>。',explain:'首數 2，尾數 0.6749，所以 log 473 = 2.6749。'}),
  Q({prompt:'log 0.0258 = ?',answer:-1.5884,tol:0.0002,skill:'S13',ph:'例如 −1.2345',hint:'0.0258 = 2.58 × 10<sup>−2</sup>。先查 log 2.58，再加上首數 −2，寫成一個數。',explain:'log 2.58 = 0.4116，所以 log 0.0258 = −2 + 0.4116 = −1.5884。'}),
  say('briggs','反過來，已知對數找回原來的數，叫「反查」。'),
  Q({prompt:'log x = 0.8000，x ≈ ?',answer:6.31,tol:0.006,skill:'S14',hint:'在表中找最接近 8000 的尾數。可以在工作台的「找尾數」輸入 0.8000，它會帶你到那一列。',explain:'log 6.31 = 0.8000，所以 x ≈ 6.31。'}),
- Q({prompt:'log x = 2.8000，x ≈ ?',answer:631,tol:0.6,skill:'S14',explain:'尾數 0.8000 對應 6.31，首數 2 代表乘以 10<sup>2</sup>：x ≈ 631。'}),
  say('briggs','現在來真的。用對數算 3.82 × 47.6。'),
- Q({prompt:'第一步：log 3.82 = ?',answer:0.5821,tol:0.00015,skill:'S13'}),
- Q({prompt:'第二步：log 47.6 = ?',answer:1.6776,tol:0.00015,skill:'S13',hint:'47.6 = 4.76 × 10。'}),
- Q({prompt:'第三步：兩個對數相加 = ?',answer:2.2597,tol:0.0003,skill:'S15'}),
- Q({prompt:'第四步：反查。3.82 × 47.6 ≈ ?（取整數）',answer:182,tol:1.2,skill:'S15',hint:'尾數 0.2597 最接近表中的哪一格？首數 2 代表乘以 10<sup>2</sup>。',explain:'尾數 2597 最接近 2601（N = 18，欄 2），所以答案約 1.82 × 10<sup>2</sup> = 182。直接相乘是 181.832，誤差不到 0.1%。'}),
+ Q({prompt:'用對數表算 3.82 × 47.6 ≈ ?（取整數）',answer:182,tol:1.2,skill:'S15',hint:'log 3.82 = 0.5821，log 47.6 = 1.6776。兩個對數相加，再到表裡反查尾數；首數 2 代表乘以 10<sup>2</sup>。',explain:'0.5821 + 1.6776 = 2.2597。尾數 2597 最接近 2601（N = 18，欄 2），所以答案約 1.82 × 10<sup>2</sup> = 182。直接相乘是 181.832，誤差不到 0.1%。'}),
  C({prompt:'用對數算 9.47 ÷ 2.15，要怎麼做？',choices:['log 9.47 ÷ log 2.15，再反查','log 9.47 − log 2.15，再反查','log 9.47 + log 2.15，再反查','(log 9.47 − log 2.15) ÷ 2'],answer:1,skill:'S15',explain:'除法變成減法。注意不是把兩個對數相除。'}),
- Q({prompt:'9.47 ÷ 2.15 ≈ ?（到小數第二位）',answer:4.4,tol:0.025,show:'4.40',skill:'S15',hint:'log 9.47 = 0.9763，log 2.15 = 0.3324。',explain:'0.9763 − 0.3324 = 0.6439，最接近 log 4.40 = 0.6435，所以約 4.40。直接相除是 4.4047。'}),
  nar('有了這本表，原本要算一整夜的乘法，十分鐘就能算完。'),
 ]},
 {year:'1620',place:'林茨 · 奧地利',scene:'linz',title:'替克卜勒算出天空',hook:'火星繞太陽一圈要幾年？',steps:[
@@ -1123,11 +1098,7 @@ const CH=[
  say('kepler','我找到了行星的第三定律：公轉週期的平方，和軌道半長軸的立方成正比。以地球為單位，就是 T<sup>2</sup> = a<sup>3</sup>。'),
  say('kepler','火星的 a ≈ 1.52（天文單位）。它繞太陽一圈要幾年？要算 1.52 的 1.5 次方，用手算實在太痛苦了。'),
  C({prompt:'T<sup>2</sup> = a<sup>3</sup> 兩邊取 log，會得到？',choices:['log T = 3 log a','2 log T = 3 log a','2 + log T = 3 + log a','log 2T = log 3a'],answer:1,skill:'S16',explain:'冪的對數：log T<sup>2</sup> = 2 log T，log a<sup>3</sup> = 3 log a。所以 log T = 1.5 log a。'}),
- Q({prompt:'查表：log 1.52 = ?',answer:0.1818,tol:0.00015,skill:'S13'}),
- Q({prompt:'log T = 1.5 × 0.1818 = ?',answer:0.2727,tol:0.0003,skill:'S16'}),
- Q({prompt:'反查：火星的週期 T ≈ ? 年（到小數第二位）',answer:1.875,tol:0.016,show:'1.87',skill:'S14',hint:'尾數 2727 最接近表中哪一格？',explain:'2727 最接近 2718（log 1.87），所以 T ≈ 1.87 年。真實的火星年約 1.88 年（687 天），差一點點是因為我們只用三位數的表。'}),
- say('kepler','太好了！還有木星，a ≈ 5.20。'),
- Q({prompt:'木星的週期 T ≈ ? 年（到小數第一位）',answer:11.85,tol:0.2,show:'11.9',skill:'S16',hint:'log 5.20 = 0.7160。乘以 1.5 之後，首數是多少？',explain:'1.5 × 0.7160 = 1.0740。尾數 0740 最接近 0755（log 1.19），首數 1，所以 T ≈ 11.9 年。真實值是 11.86 年。'}),
+ Q({prompt:'火星的週期 T ≈ ? 年（到小數第二位）',answer:1.875,tol:0.016,show:'1.87',skill:'S16',hint:'log T = 1.5 × log 1.52。先查 log 1.52，乘以 1.5，再到表裡反查。',explain:'log T = 1.5 × 0.1818 = 0.2727。2727 最接近 2718（log 1.87），所以 T ≈ 1.87 年。真實的火星年約 1.88 年（687 天），差一點點是因為我們只用三位數的表。'}),
  C({prompt:'最後一題：某顆小行星繞太陽一圈要 8 年，它的 a 是多少？',choices:['2','4','8','16'],answer:1,skill:'S16',hint:'a<sup>3</sup> = 8<sup>2</sup> = 64。回想第一章：64 = 2<sup>6</sup>。',explain:'a = 64<sup>1/3</sup> = (2<sup>6</sup>)<sup>1/3</sup> = 2<sup>2</sup> = 4。'}),
  say('you','（把答案寫進回信，寄往林茨。）'),
  nar('1627 年，克卜勒出版《魯道夫星表》，計算中大量使用對數。之後三百多年，從航海、測量到工程，人們都靠對數表和計算尺運算，直到電子計算機出現。'),
@@ -2137,7 +2108,7 @@ function renderT(m){
     out.querySelectorAll('tbody tr').forEach(tr=>{const open=()=>studentDetail(f.students[+tr.dataset.i],m);tr.onclick=open;tr.onkeydown=e=>{if(e.key==='Enter')open();};});
   } else if(T.tab==='stuck'){
     const by={};
-    ans.filter(a=>a.mode==='劇情'&&a.q).forEach(a=>{const o=by[a.q]||(by[a.q]={q:a.q,ch:a.ch,room:a.room,skill:a.skill,question:a.question,correct:a.correct,n:0,first:0,tries:0,sec:0,reveal:0,wrong:{}});o.n++;if(a.first)o.first++;o.tries+=a.tries;o.sec+=a.sec;if(a.reveal)o.reveal++;
+    ans.filter(a=>a.mode==='劇情'&&a.q).forEach(a=>{const K=a.q+'|'+a.question;const o=by[K]||(by[K]={q:a.q,ch:a.ch,room:a.room,skill:a.skill,question:a.question,correct:a.correct,n:0,first:0,tries:0,sec:0,reveal:0,wrong:{}});o.n++;if(a.first)o.first++;o.tries+=a.tries;o.sec+=a.sec;if(a.reveal)o.reveal++;
       a.given.split(' | ').slice(0,-1).forEach(w=>{if(w)o.wrong[w]=(o.wrong[w]||0)+1;});if(!a.ok&&a.given){const l=a.given.split(' | ').pop();o.wrong[l]=(o.wrong[l]||0)+1;}});
     const qs=Object.values(by).sort((a,b)=>a.first/a.n-b.first/b.n||b.n-a.n).slice(0,15);
     const bs={};ans.forEach(a=>{if(!a.skill||a.skill==='暖身')return;const o=bs[a.skill]||(bs[a.skill]={n:0,first:0});o.n++;if(a.first)o.first++;});
@@ -2217,6 +2188,8 @@ document.addEventListener('visibilitychange',()=>{
   else if(screen==='play'&&P&&!P.enter&&S.run[P.ci]){P.enter=Date.now();}
 });
 setInterval(()=>{if(LQ.length)flush();},60000);
+const CONTENT_V=2;
+if(S.cv!==CONTENT_V){S.run={};S.cv=CONTENT_V;save();}
 setTimeout(flush,2500);
 go('title');
 if(location.hash==='#teacher') setTimeout(teacherLogin,300);
